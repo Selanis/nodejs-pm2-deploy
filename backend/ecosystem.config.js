@@ -13,7 +13,7 @@ module.exports = {
   // Настройка деплоя
   deploy: {
     production: {
-      "ssh_options": "StrictHostKeyChecking=no",
+      key: 'ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIK1iPebIJ2xkp8S1SuVYQN2u48jBPkIYv0m504/dVUlf',
       user: DEPLOY_USER,
       host: DEPLOY_HOST,
       ref: DEPLOY_REF,
