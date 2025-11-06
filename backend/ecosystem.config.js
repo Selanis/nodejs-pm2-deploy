@@ -1,7 +1,7 @@
 require('dotenv').config({ path: '.env.deploy' });
 
 const {
-  DEPLOY_USER, DEPLOY_HOST, DEPLOY_PATH, REPOSITORY_PATH, DEPLOY_REF = 'origin master',
+  DEPLOY_USER, DEPLOY_HOST, DEPLOY_PATH, REPOSITORY_PATH, DEPLOY_REF,
 } = process.env;
 
 module.exports = {
@@ -18,8 +18,8 @@ module.exports = {
       ref: DEPLOY_REF,
       repo: REPOSITORY_PATH,
       path: DEPLOY_PATH,
-      'pre-deploy-local': `scp ./.env* ${DEPLOY_USER}@${DEPLOY_HOST}:${DEPLOY_PATH}`,
-      'post-deploy': 'npm i && pm2 restart app',
+      'pre-deploy-local': `bash scripts/deployEnv.sh ${DEPLOY_USER}@${DEPLOY_HOST} ${DEPLOY_PATH}`,
+      'post-deploy': 'cd backend && pwd && npm ci && npm run build $$ pm2 restart all',
     },
   },
 }
