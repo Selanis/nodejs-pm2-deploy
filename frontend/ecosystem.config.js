@@ -1,4 +1,4 @@
-require('dotenv').config();
+require('dotenv').config({ path: '.env.deploy' });
 
 const {
   DEPLOY_USER, DEPLOY_HOST, DEPLOY_PATH, REPOSITORY_PATH, DEPLOY_REF = 'origin/master',
@@ -18,8 +18,8 @@ module.exports = {
       ref: DEPLOY_REF,
       repo: REPOSITORY_PATH,
       path: DEPLOY_PATH,
-      'pre-deploy-local': `npm run build && scp ./*.env ${DEPLOY_USER}@${DEPLOY_HOST}:${DEPLOY_PATH}`,
-      'post-deploy': 'npm i && pm2 restart app',
+      'pre-deploy-local': `npm run deploy`,
+      'post-deploy': 'npm i && chmod -R 755 ./*',
     },
   },
 }
