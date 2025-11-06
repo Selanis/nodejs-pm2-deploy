@@ -19,7 +19,7 @@ module.exports = {
       repo: REPOSITORY_PATH,
       path: DEPLOY_PATH,
       'pre-deploy-local': `scp ./.env* ${DEPLOY_USER}@${DEPLOY_HOST}:${DEPLOY_PATH}`,
-      'post-deploy': 'npm install && NODE_OPTIONS=--openssl-legacy-provider react-scripts build',
+      'post-deploy': 'cd frontend && pwd && npm ci && react-scripts --openssl-legacy-provider build',
     },
   },
 }
