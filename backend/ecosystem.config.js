@@ -7,7 +7,7 @@ const {
 module.exports = {
   apps : [{
     name   : "mesto-api",
-    script : "./src/app.ts"
+    script : "dist/app.ts"
   }],
 
   // Настройка деплоя
@@ -19,7 +19,7 @@ module.exports = {
       repo: REPOSITORY_PATH,
       path: DEPLOY_PATH,
       'pre-deploy-local': `scp ./.env* ${DEPLOY_USER}@${DEPLOY_HOST}:${DEPLOY_PATH}`,
-      'post-deploy': 'npm install',
+      'post-deploy': 'cd backend && pwd && npm ci && npm run build && pm2 startOrRestart ecosystem.config.js --env production',
     },
   },
 }
