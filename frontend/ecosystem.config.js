@@ -18,10 +18,8 @@ module.exports = {
       ref: DEPLOY_REF,
       repo: REPOSITORY_PATH,
       path: DEPLOY_PATH,
-      'pre-deploy': `scp ./*.env ${DEPLOY_USER}@${DEPLOY_HOST}:${DEPLOY_PATH}`,
-      'post-deploy': 'npm i',
-      'build': 'npm run build',
-      'restart': 'pm2 restart app'
+      'pre-deploy-local': `npm run build && scp ./*.env ${DEPLOY_USER}@${DEPLOY_HOST}:${DEPLOY_PATH}`,
+      'post-deploy': 'npm i && pm2 restart app',
     },
   },
 }

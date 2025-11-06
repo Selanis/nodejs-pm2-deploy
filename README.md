@@ -2,6 +2,6 @@
 
 Стартеркит проекта по автоматизации деплоя фронтенда и бэкенда при помощи pm2 (pm2 deploy)
 
-IP адрес 62.84.121.41
-Frontend https://...
-Backend https://...
+IP адрес 89.169.168.220
+Frontend https://mesto.selanis.nomorepartiessbs.ru/
+Backend https://api.mesto.selanis.nomorepartiessbs.ru/
